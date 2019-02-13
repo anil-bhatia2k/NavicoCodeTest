@@ -1,0 +1,19 @@
+# Auto detect text files and perform LF normalization
+* text=autoSteps taken to write  the code:
+
+Design Patterns:
+
+1)	I have followed the Aggregate Root Pattern wherein the List of Players inside the Game class is encapsulated from the outside world and change actions like player rolling a die or adding a player has to go through the game class. Any changes to the players like rolling a die or Moving a token has to go via the game class as well.
+2)	I have followed single responsibility principle wherein each class has its own set of responsibilities. Moving a token and Rolling a die is a responsibility of Player. Moving the Game or and deciding the state of the Game(start, end or finish is the responsibility of the Game Class)
+3)	I have followed the Arrange, Act and Assert Pattern for writing Unit Tests
+4)	I have evolved my tests by following Red Green and Refactor Pattern.
+5)	Token is inside the player class and can only be manipulated by the player and not the game which also caters to Single Responsibility Principle.
+6)	PlayNextMove is a template method in the player class which dictates the order of players turn. The die is rolled first and then the token is moved  depending on the outcome of rolling of the die.(This fulfils the following business rule)
+Given the player rolls a 4
+When they move their token
+Then the token should move 4 spaces
+
+
+Following is the vision to evolving the application 
+1)	At its current state the application is only handling one player because feature 1 does not include multiplayers. Its very easy though to add players because there is a list of players in the game class. Additional functionality can be easily added to game class like deciding players turn etc.
+2)	The Application can introduce a further class called Board which will take away the task of adjusting the value to which the token should be moved after the player rolls the die. It will decide such value by considering the snakes and ladders on the board.
